@@ -35,7 +35,8 @@ namespace NaukariUtitlity
             this.browser = SetBrowserFromEnvVar(settings);
             this.url = settings["url"];
             string p1 = settings["pass1"];
-            string p2 = testDt["password2"];
+            //string p2 = testDt["password2"];
+            string p2 = SetPassFromEnvVar(testDt);
             this.password = string.Concat(p1, p2);
             Console.WriteLine("Launched" + password);
             BrowserSelector br = new BrowserSelector();

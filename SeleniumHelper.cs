@@ -24,6 +24,22 @@ namespace NaukariUtitlity
             return Browser;
         }
 
+        public static String SetPassFromEnvVar(IConfigurationRoot config)
+        {
+            string Pass = string.Empty;
+            string Ps = string.Empty;
+            Pass = config["password2"];
+            Console.WriteLine("Current Browser =" + Pass);
+            Console.WriteLine("Getting environmental variable for browser..");
+            Ps = Environment.GetEnvironmentVariable("PassEnv");
+            if (!string.IsNullOrEmpty(Ps))
+            {
+                Pass = Ps;
+                Console.WriteLine("Current Browser from Env Variable " + Pass);
+            }
+            return Pass;
+        }
+
         public static IWebElement WaitUntilElementExists(IWebDriver driver, By elementLocator, int timeout = 15)
         {
             try
