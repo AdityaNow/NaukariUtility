@@ -26,10 +26,13 @@ namespace NaukariUtitlity.Utilities
             {
                 var settings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
                 ChromeOptions option = new ChromeOptions();
+                option.AddArguments("enable-popup-blocking");
+                option.AddArguments("start-maximized"); // https://stackoverflow.com/a/26283818/1689770
+                option.AddArguments("enable-automation"); // https://stackoverflow.com/a/43840128/1689770
                 //Get Latest Webdriver and match with installed chrome version to avoid version conflict
                 new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                 //Inject the Headless option to the chromedriver if required
-                IWebDriver driver = new ChromeDriver();
+                IWebDriver driver = new ChromeDriver(option);
                 wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 if (url == null || url == "")
                 {
@@ -39,7 +42,6 @@ namespace NaukariUtitlity.Utilities
                 {
                     driver.Url = url;
                 }
-                driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
                 driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(30);
@@ -100,7 +102,6 @@ namespace NaukariUtitlity.Utilities
                 {
                     driver.Url = url;
                 }
-                driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
                 driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(20);
