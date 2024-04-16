@@ -25,13 +25,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="PageObjects\Upload_Reume.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="PageObjects\Edit_Profile.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Update="PageObjects\Naukari_Objects.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Update="Tests\LoginTest.cs">
+    <Compile Update="Tests\TestE2E.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Update="Utilities\BrowserSelector.cs">
@@ -47,6 +50,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="TestData\testData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="UploadFiles\AutoResumeBlank.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

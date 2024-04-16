@@ -13,7 +13,7 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace NaukariUtitlity
 {
-    public class LoginTest : SeleniumHelper
+    public class TestE2E : SeleniumHelper
     {
         private IWebDriver driver;
         private WebDriverWait wait;
@@ -21,6 +21,7 @@ namespace NaukariUtitlity
         private string password = string.Empty;
         private string ActualHeadline = "";
         private string ExperimentalHeadline = "";
+        private string resumeUpload = "";
         private string url = null;
         private string browser = null;
 
@@ -49,6 +50,7 @@ namespace NaukariUtitlity
             this.emailID = settings["mail"];
             this.ActualHeadline = settings["ResumeHeadline"];
             this.ExperimentalHeadline = settings["RH1"];
+            this.resumeUpload = testDt["ResumeUploadFile"];
         }
         //------------------------------------------------------------------------
         //------------------------------------------------------------------------
@@ -90,6 +92,21 @@ namespace NaukariUtitlity
             Console.WriteLine("done");
         }
 
+        [Test, Order(4), Category("regression")]
+        public void UploadResume()
+        {
+            MiscellaneousUtility msc = new MiscellaneousUtility(driver);
+            Edit_Profile ep = new Edit_Profile(driver);
+            Upload_Resume up = new Upload_Resume(driver);
+            #region - Uncomment if you want to run this test as a standalone test
+            //LoginToNaukari();
+            //msc.HoverOverMyNaukariTab();
+            //msc.ClickUpdateProfile();
+            #endregion
+            Console.WriteLine("Clicked and Landed on Update Profile page..");
+            up.UploadResume(resumeUpload);
+            Console.WriteLine("done");
+        }
 
         //[TearDown]
         [OneTimeTearDown]
